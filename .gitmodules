@@ -1,0 +1,3 @@
+[submodule "dep/mqtt5"]
+	path = dep/mqtt5
+	url = https://github.com/boostorg/mqtt5.git
