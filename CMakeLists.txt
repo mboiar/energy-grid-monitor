@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-set(NAME StationC4)
+set(NAME StationC3)
 
 project(${NAME})
 
@@ -33,6 +33,7 @@ target_link_libraries(${NAME}
     Boost::mqtt5
     pthread
     rt
+    curl
 )
 
 target_compile_definitions(${NAME} PRIVATE SCHED_FIFO)
