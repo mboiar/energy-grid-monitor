@@ -1,11 +1,9 @@
-# Real-time Enegry Grid Monitor: Database Logger (LinuxRT)
+# Distributed real-time enegry grid monitor: KSE REST API endpoint
 
-This application is part of a distributed real-time system for monitoring Polish power grid data correlated with weather information. **Database Logger** is responsible for:
+This application is part of a distributed real-time system for monitoring Polish power grid data correlated with weather information. **KSE API Handler** is responsible for:
 
-- Receiving processed weather data from **Station C2** (via MQTT).
-- Receiving raw grid data from **Station C3** (via MQTT).
-- Storing all incoming data in a thread‑safe FIFO queue.
-- Periodically writing batched data from the queue to a time‑series database.
+- Periodically fetching relevant data from https://api.raporty.pse.pl/
+- Sending processed data to a database endpoint via MQTT
 
 The application is designed for **Linux with PREEMPT_RT** (soft real‑time) and is intended to run continuously on a server with a public network access.
 
@@ -27,11 +25,11 @@ The application is designed for **Linux with PREEMPT_RT** (soft real‑time) and
 
 ## Communication Architecture
 
-The four stations communicate via a central **MQTT broker** running on **Station C4** (Azure VM). All stations connect to this broker over a secure virtual network provided by **Hamachi**. This section explains how to set up the network and connect your station to the broker.
+The four stations communicate via a central **MQTT broker**. All stations connect to this broker over a secure virtual network provided by **Hamachi**. This section explains how to set up the network and connect your station to the broker.
 
 ### Overview
 
-- **Broker**: Mosquitto MQTT broker on Station C4 (Azure VM)
+- **Broker**: Mosquitto MQTT broker
 - **VPN**: Hamachi creates a virtual LAN; all stations join the same Hamachi network
 - **Protocol**: MQTT over TCP (port 1883) with username/password authentication
 - **Topics**: Predefined hierarchy

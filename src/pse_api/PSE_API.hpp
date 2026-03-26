@@ -20,22 +20,6 @@ public:
 
 protected:
   void callback() override {
-    // Load
-    // json load_data =
-    //     fetch_pse_endpoint("kse-load?$select=load_actual,"
-    //                        "dtime&$orderby=dtime&$first=10"); // ->
-    //                        load_actual
-    // std::cout << load_data << std::endl;
-
-    //   // Generation by unit
-    // std::cout << "0" << std::endl;
-
-    // json gen_data =
-    //     fetch_pse_endpoint("gen-jw?$select=value,power_"
-    //                        "plant,dtime&$orderby=dtime&$filter=dtime eq "
-    //                        "'2024-06-14 00:15:00'"); // -> value,
-    //                                                  // nazwa_mwe
-    // std::cout << gen_data << std::endl;
 
     std::string dtime_filter_offset = get_relative_rounded_datetime(60);
     std::string dtime_filter_now = get_relative_rounded_datetime(0);
@@ -47,7 +31,6 @@ protected:
          {"filter", "dtime ge '" + dtime_filter_offset + "' and dtime le '" +
                         dtime_filter_now + "'"}}); // -> section_code,
                                                    //   value
-    // std::cout << flows << std::endl;
 
     // Fetch load
     json load = fetch_pse_endpoint(
@@ -55,7 +38,6 @@ protected:
                      {"filter", "dtime ge '" + dtime_filter_offset +
                                     "'"}}); // -> section_code,
                                             //   value
-    // std::cout << load << std::endl;
 
     json payload;
     payload["flow"] = flows;

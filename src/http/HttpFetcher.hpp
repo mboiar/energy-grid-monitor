@@ -31,8 +31,6 @@ public:
   std::string get(const std::string &url) {
     response_.clear();
 
-    // std::cout << url << " " << url_encode(url) << std::endl;
-
     curl_easy_setopt(curl_, CURLOPT_URL, url.c_str());
     CURLcode res = curl_easy_perform(curl_);
     if (res != CURLE_OK) {

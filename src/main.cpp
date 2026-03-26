@@ -27,21 +27,6 @@ void signal_handler(int sig) {
   }
 }
 
-// Parse JSON response into a vector of OperationalRestriction
-// std::vector<EnergyData> parse_energy_data(const std::string &json_text) {
-//   json j = json::parse(json_text);
-
-//   std::vector<EnergyData> items;
-//   if (j.contains("value") && j["value"].is_array()) {
-//     for (const auto &item : j["value"]) {
-//       //   std::cout << item << std::endl;
-//       items.push_back(EnergyData::from_json(item));
-//     }
-//   }
-//   // Optional: handle "nextLink" for pagination
-//   return items;
-// }
-
 // Simple usage example
 int main() {
   curl_global_init(CURL_GLOBAL_DEFAULT);
